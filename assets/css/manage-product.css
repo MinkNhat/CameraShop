@@ -1,0 +1,210 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f1f1f1;
+    
+}
+
+.wapper {
+    margin: 0 auto;
+    width: 96%;
+}
+
+/* HEADER */
+.header {
+    font-size: 1.4rem;
+}
+
+.header-heading {
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.header-filter {
+    text-align: left;
+    padding-bottom: 42px;
+}
+
+.filter-input {
+    height: 30px;
+    margin-right: 12px;
+    outline: none;
+}
+
+.filter-input::placeholder {
+    font-size: 1.3rem;
+}
+
+.filter__search-name {
+    width: 240px;
+}
+
+.filter-btn {
+    height: 30px;
+    width: 60px;
+}
+
+.header__wapper {
+    display: flex;
+}
+
+.header__add-btn {
+    height: 30px;
+    margin-left: auto;
+}
+
+
+/* CONTENT */
+.content {
+    font-size: 1.4rem;
+    min-height: 600px;
+    background-color: var(--white-color);
+}
+
+td, th {
+    border: none;
+    height: 60px;
+}
+
+tr:first-child {
+    border-bottom: 1px solid #cdcdcd;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.table__name-row {
+    width: 16%;
+}
+.table__id-row, .table__category-row, .table__manufacturer-row, .table__warranty-row, .table__quantity-row, .table__price-row {
+    width: 8%;
+}
+
+.table__state-row, .table__accessories-row, .table__promotion-row {
+    width: 12%;
+}
+
+.table-btn {
+    height: 30px;
+    padding: 0 12px;
+}
+
+
+/* MODAL ADD PRODUCT*/
+.modal-form {
+    display: none;
+}
+
+.manage-product {
+    width: 800px;
+    min-height: 350px;
+    position: relative;
+    background-color: var(--white-color);
+    margin: 20vh auto 0;
+    z-index: 1;
+    border-radius: 3px;
+    /* animate */
+    --growth-from: 0.7;
+    --growth-to: 1;
+    animation: growth linear 0.1s;
+    display: block;
+}
+
+.manage-product__heading {
+    text-align: center;
+    font-size: 2rem;
+    padding: 30px 0 30px;
+}
+
+#manage-product__form {
+    font-size: 1.5rem;
+    display: flex; 
+    flex-wrap: wrap;  
+}
+
+.manage-product__left-column {
+    padding: 0 20px 0 40px;
+    width: 50%;
+}
+
+.manage-product__left-column .form-group {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+
+.manage-product__left-column .form-group span {
+    width: 120px;
+}
+
+.manage-product__left-column .form-group input {
+    flex: 1;
+}
+
+.form-group__file {
+    margin: 8px 0 20px;
+}
+
+.form-group__file span {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.manage-product__right-column {
+    width: 50%;
+    padding: 8px 40px 0 20px;
+}
+
+.manage-product__right-column .form-group {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+
+.manage-product__right-column .form-group span {
+    width: 70px;
+}
+
+.manage-product__right-column .form-group input {
+    width: 120px;
+}
+
+.form-group__accessories span {
+    display: block;
+    margin-bottom: 6px;
+}
+
+#manage-product__accessories {
+    margin-bottom: 10px;
+}
+
+.form-group__accessories label {
+    margin-right: 10px;
+}
+
+.form-group__warranty label {
+    margin-right: 10px;
+}
+
+.warranty-label {
+    display: block;
+    margin: 24px 0 6px;
+}
+
+.form-group__quantity {
+    margin-top: 16px;
+}
+
+.manage-product__btn-submit {
+    margin: 0 auto;
+    width: 140px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+
+
