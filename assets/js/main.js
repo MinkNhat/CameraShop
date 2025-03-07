@@ -1,16 +1,43 @@
-app()
+let slideIndex = 1
 
 function app() {
     loadUser()
     loadCate()
     loadProducts()
-    // renderProducts()
 
     // Prevent sự kiện out focus vào search header ( khi click vào item vẫn giữ focus )
     searchHistort.onmousedown = function(e) {
         e.preventDefault()
     }
 }
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n)
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n)
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("image-slides")
+  let dots = document.getElementsByClassName("dot")
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+
+
 
 async function loadUser() {
     try {
@@ -159,15 +186,43 @@ async function openQuickView(productId) {
         })
 
         var data = await res.json()
-        console.log(data)
         
         let html = `
             <div class="quick-view-content" style="display: flex">
                 <ul class="quick-view__img-list">
-                    <li class="quick-view__img-item quick-view__img-item--active">
-                        <img src="${data.main_image}" alt="" class="quick-view__img">
-                    </li>
+                    <div class="slideshow-container">
+                        <div class="image-slides fade">
+                            <img src="${data.main_image}" class="quick-view__img">
+                        </div>
+        `
+
+        data.images.forEach(img => {
+            html += `
+                        <div class="image-slides fade">
+                            <img src="${img.image}" class="quick-view__img">
+                        </div>
+            `
+        })        
+
+        html += `
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                        <div style="text-align:center" class="dot-container">
+                            <span class="dot" onclick="currentSlide(1)"></span>
+        `
+
+        data.images.forEach(img => {
+            html += `
+                            <span class="dot" onclick="currentSlide(${img.id+1})"></span>
+            `
+        })               
+
+        html += `
+                        </div>
+                    </div>
                 </ul>
+
                 <div class="quick-view__wapper">
                     <div class="quick-view__heading" title="${data.name}">${data.name}</div>
                     <div class="quick-view__price">
@@ -251,6 +306,8 @@ async function openQuickView(productId) {
             alert("Số lượng không hợp lệ!!!")
         }
     }
+
+    showSlides(slideIndex)
 }
 
 
@@ -424,4 +481,6 @@ function loadQuickView(product) {
 function FormatDotNumber(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
+
+app()
 

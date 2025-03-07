@@ -61,8 +61,8 @@ async function loginForm() {
                 grant_type: "password",
                 username: username.value,
                 password: password.value,
-                client_id: "qEhPAuM2f8unhGqG5YSCMI7pac1H5cTuuTBOptdZ",  
-                client_secret: "ts90kgfeFbvPxl7UMMmUSISUFingm0orktr1fUmPVHohhx3xFUOKOH1YLHcNS1j467waVvRD2cXu9jX5xQ8dUakyWotI2fUvAuhH64sl8AZ62ckYp9xlnVVKIeXd0u6t" 
+                client_id: CLIENT_ID,  
+                client_secret: CLIENT_SECRECT 
             })
         });
 

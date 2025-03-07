@@ -1,4 +1,6 @@
-const BASE_URL = 'http://127.0.0.1:8000'
+const BASE_URL = 'https://camerashopapi-production.up.railway.app'
+const CLIENT_ID = 'P3PZZEFFkmv6otBZKPkEE1KkhnDWCJ19tu9kKN3h'
+const CLIENT_SECRECT = 'fgHrTrLZIP4InOtBXrNySgbEERZjZSCHnc3ZVg6H6DhH7X0UgkhT8rbaxGXa3WrXfnngEDHJO8Nasd6AIg6SZU8oplp5dKYMWyjmxyGfzqaEs9pTHHWSSPEHo8Mdm9du'
 
 //Login - Register
 const modalElement = document.querySelector('.js-modal')
