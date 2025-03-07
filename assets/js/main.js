@@ -1,25 +1,22 @@
-
-
 app()
-// -------
 
 function app() {
     loadUser()
+    loadCate()
+    loadProducts()
     // renderProducts()
 
     // Prevent sự kiện out focus vào search header ( khi click vào item vẫn giữ focus )
     searchHistort.onmousedown = function(e) {
         e.preventDefault()
     }
-
-    
 }
 
 async function loadUser() {
     try {
         const token = localStorage.getItem('access_token')
         if(token) {
-            let res = await fetch("http://127.0.0.1:8000/users/current-user/", {
+            let res = await fetch(`${BASE_URL}/users/current-user/`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -28,7 +25,6 @@ async function loadUser() {
             });
     
             let data = await res.json()
-            console.log(data)
             if(data.id) {
                 if(data.avatar!=='')
                     document.querySelector('.header__navbar-user-img').src = data?.avatar
@@ -43,6 +39,105 @@ async function loadUser() {
     } catch (error) {
         console.error("Lỗi khi đăng nhập:", error);
         alert("Có lỗi xảy ra khi đăng nhập!");
+    }
+}
+
+async function loadCate() {
+    try {
+        let res = await fetch(`${BASE_URL}/categories/`, {
+            method: "GET",
+        })
+
+        let data = await res.json()
+        
+        let html = `
+            <li class="category__item">
+                <a href="" class="category__item-link">Tất cả sản phẩm</a>
+            </li>
+        `
+        data.forEach(cate => {
+            html += `
+                <li class="category__item">
+                    <a href="" class="category__item-link">${cate.name}</a>
+            `
+
+            cate.subcategories.forEach(subCate => {
+                html += `
+                    <ul class="sub-category__list">
+                        <li class="sub-category__item">
+                            <a href="" class="sub-category__item-link">${subCate.name}</a>
+                        </li> 
+                    </ul>
+                `
+            })
+            html += `</li>`
+        })
+        cateList.innerHTML = html
+
+    } catch (error) {
+        console.error("Lỗi khi load category:", error);
+    }
+}
+
+async function loadProducts() {
+    try {
+        let res = await fetch(`${BASE_URL}/products/`, {
+            method: "GET",
+        })
+
+        let data = await res.json()
+        console.log(data)
+
+        var html = data.map(product => {
+            return `
+                <div class="grid__column-2-4 product-item-container">
+                    <div class="home-product-item">
+                        <div class="home-product-wapper">
+                            <div class="home-product-item__img" style="background-image: url(${product.main_image})"></div>
+                            <div class="home-product-item__quick-view  js-quick-view-btn">
+                                <span class="home-product-item__quick-view-link">XEM NHANH</span>
+                            </div>
+                        </div>
+                        <div class="home-product-item__name" title="${product.name}">${product.name}</div>
+                        <div class="home-product-item__price">
+                            <span class="home-product-item__price-old">${FormatDotNumber((product.price*1.1).toFixed())}<span>đ</span></span>
+                            <span class="home-product-item__price-current">${FormatDotNumber(product.price)}<span>đ</span></span>
+                        </div>
+                        <div class="home-product-item__action">
+                            <div class="home-product-item__like home-product-item__like-liked">
+                                <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
+                                <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
+                            </div>
+
+                            <div class="home-product-item__rating">
+                                <i class="home-product-item__rating-icon home-product-item__rating-icon--active fa-solid fa-star"></i>
+                                <i class="home-product-item__rating-icon home-product-item__rating-icon--active fa-solid fa-star"></i>
+                                <i class="home-product-item__rating-icon home-product-item__rating-icon--active fa-solid fa-star"></i>
+                                <i class="home-product-item__rating-icon home-product-item__rating-icon--active fa-solid fa-star"></i>
+                                <i class="home-product-item__rating-icon fa-solid fa-star"></i>
+                            </div>
+
+                            <!-- <span class="home-product-item__sold">88 đã bán</span> -->
+                        </div>
+                        <!-- <div class="home-product-item__origin">
+                            <span class="home-product-item__origin-brand">Sony</span>
+                            <span class="home-product-item__origin-name">Nhật Bản</span>
+                        </div> -->
+                        <div class="home-product-item__sale-off">
+                            <span class="home-product-item__sale-label">SALE</span>
+                            <span class="home-product-item__sale-percent">10%</span>
+                        </div>
+                        <div class="home-product-item__oder">
+                            <button class="home-product-item__oder-btn">ĐẶT HÀNG NGAY</button>
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+        productsList.innerHTML = html.join("") 
+
+    } catch (error) {
+        console.error("Lỗi khi load products:", error);
     }
 }
 

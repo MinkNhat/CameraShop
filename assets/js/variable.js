@@ -1,3 +1,5 @@
+const BASE_URL = 'http://127.0.0.1:8000'
+
 //Login - Register
 const modalElement = document.querySelector('.js-modal')
 const modalOverlayElement = document.querySelector('.js-modal__overlay')
@@ -17,8 +19,8 @@ const userInfoContainer = document.querySelector('.header__navbar-user')
 
 const logoutBtn = document.querySelector('.js-logout-btn')
 
-
-
+//Category
+const cateList = document.querySelector('.js-cate-list')
 
 // Quick view
 var quickViewModal = document.querySelector('.js-quick-view')

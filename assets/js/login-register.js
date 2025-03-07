@@ -52,7 +52,7 @@ async function loginForm() {
         loginFormBtn.style.display = "none"
         loader.style.display = "block"
 
-        let res = await fetch("http://127.0.0.1:8000/o/token/", {
+        let res = await fetch(`${BASE_URL}/o/token/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -133,7 +133,7 @@ async function registerForm() {
         }
 
 
-        let res = await fetch("http://127.0.0.1:8000/users/", {
+        let res = await fetch(`${BASE_URL}/users/`, {
             method: "POST",
             body: formData
         })
