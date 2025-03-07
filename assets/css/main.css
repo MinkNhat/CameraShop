@@ -1410,6 +1410,8 @@ i.home-product-item__like-icon-fill {
     font-size: 1.6rem;
     line-height: 40px;
     display: block;
+    text-decoration: none;
+    color: var(--white-color);
 }
 
 .home-product-item:hover .home-product-item__quick-view{

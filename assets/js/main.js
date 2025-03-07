@@ -86,7 +86,6 @@ async function loadProducts() {
         })
 
         let data = await res.json()
-        console.log(data)
 
         var html = data.map(product => {
             return `
@@ -95,7 +94,7 @@ async function loadProducts() {
                         <div class="home-product-wapper">
                             <div class="home-product-item__img" style="background-image: url(${product.main_image})"></div>
                             <div class="home-product-item__quick-view  js-quick-view-btn">
-                                <span class="home-product-item__quick-view-link">XEM NHANH</span>
+                                <button onclick="openQuickView(${product.id})" class="home-product-item__quick-view-link">XEM NHANH</button>
                             </div>
                         </div>
                         <div class="home-product-item__name" title="${product.name}">${product.name}</div>
@@ -141,6 +140,120 @@ async function loadProducts() {
     }
 }
 
+async function openQuickView(productId) {
+    //open quick view
+    console.log(productId)
+    quickViewModal.style.display = "block";
+    document.querySelector('.quick-view-content').style.display = "flex"
+
+    //quick view close
+    var quickViewOverlay = document.querySelector('.js-quick-view__overlay')
+    quickViewOverlay.onclick = function() {
+        quickViewModal.style.display = "none"   
+        document.querySelector('.quick-view-content').style.display = "none"
+    }
+
+    try {
+        let res = await fetch(`${BASE_URL}/products/${productId}/`, {
+            method: "GET",
+        })
+
+        var data = await res.json()
+        console.log(data)
+        
+        let html = `
+            <div class="quick-view-content" style="display: flex">
+                <ul class="quick-view__img-list">
+                    <li class="quick-view__img-item quick-view__img-item--active">
+                        <img src="${data.main_image}" alt="" class="quick-view__img">
+                    </li>
+                </ul>
+                <div class="quick-view__wapper">
+                    <div class="quick-view__heading" title="${data.name}">${data.name}</div>
+                    <div class="quick-view__price">
+                        ${FormatDotNumber(data.price)}
+                        <span class="quick-view__price-tail">đ</span>
+                    </div>
+                    <table class="quick-view__table">
+                        <tr>
+                            <th>Tình trạng</th>
+                            <td>Đã qua sử dụng (99%)</td>
+                        </tr>
+                        <tr>
+                            <th>Phụ kiện</th>
+                            <td>Dây đeo, pin, thẻ nhớ 64GB, bao da</td>
+                        </tr>
+                        <tr>
+                            <th>Bảo hành</th>
+                            <td>6 tháng</td>
+                        </tr>
+                        <tr>
+                            <th>Số lượng</th>
+                            <td class="quick-view__product-quantity">${data.stock}</td>
+                        </tr>
+                        <tr>
+                            <th>Quà tặng kèm</th>
+                            <td>Thẻ nhớ 32GB</td>
+                        </tr>
+                    </table>
+                    <div class="quick-view__quantity">
+                        <span class="quick-view__quantity-label">Số lượng: </span>
+                        <button class="quick-view__quantity-btn quick-view__quantity-sub">-</button>
+                        <input type="number" name="" id="" class="quick-view__quantity-number" value="0">
+                        <button class="quick-view__quantity-btn quick-view__quantity-add">+</button>
+                    </div>
+                    <div class="quick-view__sumary">
+                        <span class="quick-view__sumary-label">Thành tiền: </span>
+                        <span class="quick-view__sumary-sum">0<span class="quick-view__price-tail">đ</span></span>
+                    </div>
+                    <div class="quick-view__add-to-cart">
+                        <button class="quick-view__add-btn">THÊM VÀO GIỎ HÀNG</button>
+                    </div>
+                    
+                </div> 
+            </div>
+        `
+        quickViewContent.innerHTML = html
+
+    } catch (error) {
+        console.error("Lỗi khi load category:", error);
+    }
+
+    // Lấy số lượng sản phẩm
+    var quantity = Number.parseInt(document.querySelector('.quick-view__product-quantity').innerText)
+
+    // Xử lý nút tăng số lượng khi chọn sản phẩm
+    var addBtn = document.querySelector('.quick-view__quantity-add')
+    addBtn.onclick = function() {
+        var inputQuantity = document.querySelector('.quick-view__quantity-number')
+        var num = Number.parseInt(inputQuantity.value)
+        if(num < quantity) {
+            num += 1
+            inputQuantity.value = num
+
+            document.querySelector('.quick-view__sumary-sum').innerHTML = FormatDotNumber(Number.parseFloat(data.price) * Number.parseFloat(inputQuantity.value)) + '<span class="quick-view__price-tail">đ</span>'
+        } else {
+            alert("Số lượng không hợp lệ!!!")
+        }
+    }
+
+    // Xử lý nút giảm số lượng khi chọn sản phẩm
+    var subBtn = document.querySelector('.quick-view__quantity-sub')
+    subBtn.onclick = function() {
+        var inputQuantity = document.querySelector('.quick-view__quantity-number')
+        var num = Number.parseInt(inputQuantity.value)
+        if(num > 0 && num <= quantity) {
+            num -= 1
+            inputQuantity.value = num
+
+            document.querySelector('.quick-view__sumary-sum').innerHTML = FormatDotNumber(Number.parseFloat(data.price) * Number.parseFloat(inputQuantity.value)) + '<span class="quick-view__price-tail">đ</span>'
+        } else {
+            alert("Số lượng không hợp lệ!!!")
+        }
+    }
+}
+
+
 // Hàm render products từ api, sau đó nhận sự kiện click vào nút "xem nhanh" trên từng sản phẩm
 function renderProducts() {
     fetch('http://localhost:3000/products')
@@ -148,48 +261,48 @@ function renderProducts() {
     .then(function(data){
         var html = data.map(function(product){
             return `
-        <div class="grid__column-2-4 product-item-container">
-            <div class="home-product-item">
-                <div class="home-product-wapper">
-                    <div class="home-product-item__img" style="background-image: url(${product.imgThump})"></div>
-                    <div class="home-product-item__quick-view  js-quick-view-btn">
-                        <span class="home-product-item__quick-view-link">XEM NHANH</span>
-                    </div>
-                </div>
-                <div class="home-product-item__name">${product.name}</div>
-                <div class="home-product-item__price">
-                    <span class="home-product-item__price-old">${FormatDotNumber((product.price*1.1).toFixed())}<span>đ</span></span>
-                    <span class="home-product-item__price-current">${FormatDotNumber(product.price)}<span>đ</span></span>
-                </div>
-                <div class="home-product-item__action">
-                    <div class="home-product-item__like home-product-item__like-liked">
-                        <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
-                        <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
-                    </div>
+                <div class="grid__column-2-4 product-item-container">
+                    <div class="home-product-item">
+                        <div class="home-product-wapper">
+                            <div class="home-product-item__img" style="background-image: url(${product.imgThump})"></div>
+                            <div class="home-product-item__quick-view  js-quick-view-btn">
+                                <span class="home-product-item__quick-view-link">XEM NHANH</span>
+                            </div>
+                        </div>
+                        <div class="home-product-item__name">${product.name}</div>
+                        <div class="home-product-item__price">
+                            <span class="home-product-item__price-old">${FormatDotNumber((product.price*1.1).toFixed())}<span>đ</span></span>
+                            <span class="home-product-item__price-current">${FormatDotNumber(product.price)}<span>đ</span></span>
+                        </div>
+                        <div class="home-product-item__action">
+                            <div class="home-product-item__like home-product-item__like-liked">
+                                <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
+                                <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
+                            </div>
 
-                    <div class="home-product-item__rating">
-                        <i class="home-product-item__rating-icon home-product-item__rating-icon--active fa-solid fa-star"></i>
-                        <i class="home-product-item__rating-icon home-product-item__rating-icon--active fa-solid fa-star"></i>
-                        <i class="home-product-item__rating-icon home-product-item__rating-icon--active fa-solid fa-star"></i>
-                        <i class="home-product-item__rating-icon home-product-item__rating-icon--active fa-solid fa-star"></i>
-                        <i class="home-product-item__rating-icon fa-solid fa-star"></i>
-                    </div>
+                            <div class="home-product-item__rating">
+                                <i class="home-product-item__rating-icon home-product-item__rating-icon--active fa-solid fa-star"></i>
+                                <i class="home-product-item__rating-icon home-product-item__rating-icon--active fa-solid fa-star"></i>
+                                <i class="home-product-item__rating-icon home-product-item__rating-icon--active fa-solid fa-star"></i>
+                                <i class="home-product-item__rating-icon home-product-item__rating-icon--active fa-solid fa-star"></i>
+                                <i class="home-product-item__rating-icon fa-solid fa-star"></i>
+                            </div>
 
-                    <!-- <span class="home-product-item__sold">88 đã bán</span> -->
+                            <!-- <span class="home-product-item__sold">88 đã bán</span> -->
+                        </div>
+                        <!-- <div class="home-product-item__origin">
+                            <span class="home-product-item__origin-brand">Sony</span>
+                            <span class="home-product-item__origin-name">Nhật Bản</span>
+                        </div> -->
+                        <div class="home-product-item__sale-off">
+                            <span class="home-product-item__sale-label">SALE</span>
+                            <span class="home-product-item__sale-percent">10%</span>
+                        </div>
+                        <div class="home-product-item__oder">
+                            <button class="home-product-item__oder-btn">ĐẶT HÀNG NGAY</button>
+                        </div>
+                    </div>
                 </div>
-                <!-- <div class="home-product-item__origin">
-                    <span class="home-product-item__origin-brand">Sony</span>
-                    <span class="home-product-item__origin-name">Nhật Bản</span>
-                </div> -->
-                <div class="home-product-item__sale-off">
-                    <span class="home-product-item__sale-label">SALE</span>
-                    <span class="home-product-item__sale-percent">10%</span>
-                </div>
-                <div class="home-product-item__oder">
-                    <button class="home-product-item__oder-btn">ĐẶT HÀNG NGAY</button>
-                </div>
-            </div>
-        </div>
             `
         })
         productsList.innerHTML = html.join("") 

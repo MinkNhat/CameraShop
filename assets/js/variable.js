@@ -23,7 +23,8 @@ const logoutBtn = document.querySelector('.js-logout-btn')
 const cateList = document.querySelector('.js-cate-list')
 
 // Quick view
-var quickViewModal = document.querySelector('.js-quick-view')
+const quickViewModal = document.querySelector('.js-quick-view')
+const quickViewContent = document.querySelector('.js-quick-view-content')
 
 // Header search input
 var searchHistort = document.querySelector('.js-search-history')
