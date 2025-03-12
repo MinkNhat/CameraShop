@@ -24,7 +24,7 @@
                 <nav class="header__navbar">
                     <!-- LEFT OBJECT -->
                     <ul class="header__navbar-list">
-                        <li class="header__navbar-item header__navbar-item--has-qr  header__navbar-item-separate">
+                        <li class="header__navbar-item header__navbar-item--has-qr  ">
                             Vào cửa hàng trên ứng dụng MN-Shop
                             <!-- QR CODE -->
                             <div class="header__qr">
@@ -42,7 +42,7 @@
                             </div>
                         </li>
 
-                        <li class="header__navbar-item">
+                        <!-- <li class="header__navbar-item">
                             <span class="header__navbar-title--no-pointer">Kết nối</span>
                             
                             <a href="" class="header__navbar-icon-link">
@@ -52,7 +52,7 @@
                             <a href="" class="header__navbar-icon-link">
                                 <i class="header__navbar-icon fa-brands fa-square-instagram"></i>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
 
                     <!-- RIGHT OBJECT -->
@@ -68,11 +68,11 @@
                                 <header class="header__notify-header">Thông báo mới nhận</header>
                                 
                                 <ul class="header__notify-list">
-                                    <li class="header__notify-item">
+                                    <li class="header__notify-item header__notify-item--viewed">
                                         <a href="" class="header__notify-link">
-                                            <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn//News/1502594//cap-dien-thoai-2-800x450-3.jpg" alt="" class="header__notify-img">
+                                            <img src="https://res.cloudinary.com/dbmwgavqz/image/upload/v1741707084/canva-yellow-simple-minimal-welcome-banner-instagram-post-JyZG7-05130_dycswu.jpg" alt="" class="header__notify-img">
                                             <div class="header__notify-info">
-                                                <div class="header__notify-name">Sản phẩm sạc điện thoại Hanu</div>
+                                                <div class="header__notify-name">Chào mừng bạn đã ghé!</div>
                                                 <div class="header__notify-desc">Thông tin sản phẩm sạc điện thoại Hanu chính hãng bảo hành</div>
                                             </div>
                                         </a>
@@ -80,15 +80,15 @@
 
                                     <li class="header__notify-item header__notify-item--viewed">
                                         <a href="" class="header__notify-link">
-                                            <img src="https://salt.tikicdn.com/cache/750x750/ts/product/77/c1/d4/081a8ab4a0f7860279f7f1d0d2525d92.jpg.webp" alt="" class="header__notify-img">
+                                            <img src="https://res.cloudinary.com/dbmwgavqz/image/upload/v1741707559/9AjFvEP6RP6zRd41Z9cuiyHe_qD47a1AN0QrvW9Ec0OfsmG9x-t09nmTQMAmmZuYrdso_mce4vx.png" alt="" class="header__notify-img">
                                             <div class="header__notify-info">
-                                                <div class="header__notify-name">Sản phẩm sạc điện thoại Hanu sạc điện thoại Hanu sạc điện thoại Hanu</div>
-                                                <div class="header__notify-desc">Thông tin sản phẩm sạc điện thoại Hanu chính hãng bảo hành</div>
+                                                <div class="header__notify-name">Hãy đăng ký để nhận thêm thông tin nhé</div>
+                                                <div class="header__notify-desc">Để lại email liên lạc cho chúng tôi để nhận thông báo mới nhất về sản phẩm bạn yêu thích</div>
                                             </div>
                                         </a>
                                     </li>
 
-                                    <li class="header__notify-item">
+                                    <!-- <li class="header__notify-item">
                                         <a href="" class="header__notify-link">
                                             <img src="https://salt.tikicdn.com/cache/750x750/ts/product/77/c1/d4/081a8ab4a0f7860279f7f1d0d2525d92.jpg.webp" alt="" class="header__notify-img">
                                             <div class="header__notify-info">
@@ -106,7 +106,7 @@
                                                 <div class="header__notify-desc">Thông tin sản phẩm sạc điện thoại Hanu chính hãng bảo hành</div>
                                             </div>
                                         </a>
-                                    </li>
+                                    </li> -->
                                 </ul>
 
                                 <footer class="header__notify-footer">
@@ -139,13 +139,13 @@
                                     <a href="">Tài khoản của tôi</a>
                                 </li>
                                 <li class="header__navbar-user-item">
-                                    <a href="">Địa chỉ của tôi</a>
+                                    <a href="">Thanh toán</a>
                                 </li>
                                 <li class="header__navbar-user-item">
-                                    <a href="./manage-product.html" target="_blank">Đơn mua</a>
+                                    <a href="" target="">Giỏ hàng</a>
                                 </li>
-                                <li class="header__navbar-user-item">
-                                    <a href="">Thêm sản phẩm</a>
+                                <li class="header__navbar-user-item js-add-products">
+                                    <a href="./manage-product.html" target="_blank">Thêm sản phẩm</a>
                                 </li>
                                 <li class="header__navbar-user-item header__navbar-user-item-seperate">
                                     <a href="" class="js-logout-btn">Đăng xuất</a>
@@ -160,7 +160,7 @@
                  <div class="header-with-search">
                     <!-- LOGO -->
                     <div class="header__logo">
-                        <a href="" class="header__logo-link">
+                        <a href="/" class="header__logo-link">
                              <img class="header__logo-img" src="./assets/img/logo.png" alt="">
                         </a>                       
                     </div>
@@ -168,7 +168,7 @@
                     <!-- SEARCH -->
                     <div class="header__search">
                         <div class="header__search-wrap">
-                            <input class="header__search-input" type="text" name="" placeholder="Tìm kiếm sản phẩm">
+                            <input class="header__search-input js-search-input" type="text" name="" placeholder="Tìm kiếm sản phẩm">
 
                             <div class="header__search-history">
                                 <p class="header__search-history-label">
@@ -215,7 +215,7 @@
                     <div class="header__cart-wrap">
                         <div class="header__cart">
                             <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
-                            <span class="header__cart-notice">3</span>
+                            <span class="header__cart-notice">0</span>
 
                             <ul class="header__cart-list ">
                                 <!-- NO ITEM IN CART -->
@@ -223,7 +223,7 @@
                                 <span class="header__cart-label-nocart">Chưa có sản phẩm</span>
 
                                 <!-- HAVE ITEM IN CART -->
-                                 <div class="header__cart-heading">
+                                 <!-- <div class="header__cart-heading">
                                     Sản phẩm đã thêm
                                  </div>
 
@@ -288,7 +288,7 @@
 
                                  <div class="header__cart-view-cart">
                                     <a href="">Xem giỏ hàng</a>
-                                 </div>
+                                 </div> -->
                             </ul>
                         </div>
                     </div>
@@ -350,8 +350,8 @@
     
                         <div class="home-filter__page">
                             <div class="home-filter__page-num">
-                                <span class="home-filter__page-current">1</span> /
-                                <span class="home-filter__page-end">14</span>
+                                <span class="home-filter__page-current js-current-page">1</span> /
+                                <span class="home-filter__page-end js-end-page">14</span>
                             </div>
     
                             <div class="home-filter__page-control">
@@ -366,8 +366,12 @@
                     </div>
 
                     <div class="home-product">
+                        <span class="loader product-loader js-products-loading"></span>    
                         <div class="grid__row js-product-list">
-                            <div class="grid__column-2-4">
+
+                            <!-- <span class="loader product-loader js-products-loading"></span> -->
+                            
+                            <!-- <div class="grid__column-2-4">
                                 <a class="home-product-item" href="">
                                     <div class="home-product-wapper">
                                         <div class="home-product-item__img" style="background-image: url(./assets/img/product1.jpeg)"></div>
@@ -396,12 +400,12 @@
                                             <i class="home-product-item__rating-icon fa-solid fa-star"></i>
                                         </div>
 
-                                        <!-- <span class="home-product-item__sold">88 đã bán</span> -->
+                                        <span class="home-product-item__sold">88 đã bán</span>
                                     </div>
-                                    <!-- <div class="home-product-item__origin">
+                                    <div class="home-product-item__origin">
                                         <span class="home-product-item__origin-brand">Sony</span>
                                         <span class="home-product-item__origin-name">Nhật Bản</span>
-                                    </div> -->
+                                    </div>
                                     <div class="home-product-item__sale-off">
                                         <span class="home-product-item__sale-label">SALE</span>
                                         <span class="home-product-item__sale-percent">10%</span>
@@ -412,9 +416,9 @@
                                     </div>
                                     
                                 </a>
-                            </div>
+                            </div> -->
 
-                            <div class="pagination home-product__pagination">
+                            <!-- <div class="pagination home-product__pagination js-pagination">
                                 <ul class="pagination__list">
                                     <li class="pagination__item">
                                         <a href="" class="pagination__item-link">
@@ -452,7 +456,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
@@ -507,19 +511,19 @@
                                 <li class="footer__item">
                                     <div class="footer__wapper">
                                         <i class="footer-icon fa-solid fa-phone"></i>
-                                        <a href="" class="footer__item-link">+84 349 171 071</a>
+                                        <a href="" class="footer__item-link">+84 349 171 041</a>
                                     </div>
                                 </li>
                                 <li class="footer__item">
                                     <div class="footer__wapper">
                                         <i class="footer-icon fa-solid fa-envelope"></i>
-                                        <a href="" class="footer__item-link">minhnhat@gmail.com</a> 
+                                        <a href="" class="footer__item-link">camerashop@gmail.com</a> 
                                     </div>
                                 </li>
                                 <li class="footer__item">
                                     <div class="footer__wapper">
                                         <i class="footer-icon fa-solid fa-location-dot"></i>
-                                        <a href="" class="footer__item-link">Nhơn Đức, Nhà Bè, Tp Hồ Chí Minh</a> 
+                                        <a href="" class="footer__item-link">Quận 10, Tp Hồ Chí Minh</a> 
                                     </div>
                                 </li>
                             </ul>
@@ -558,8 +562,8 @@
                     </div>
                 </div>
                 <div class="grid__row footer__coppy-right">
-                    <span class="footer__coppy-right-label">Coppyright 2024 &copy;</span>
-                    <a href="" class="footer__coppy-right-link">minhnhatshop.com</a>
+                    <span class="footer__coppy-right-label">Coppyright 2023 &copy;</span>
+                    <a href="" class="footer__coppy-right-link">camerashop.com</a>
                 </div>
             </div>
         </footer>
@@ -572,7 +576,8 @@
         <!-- QUICK VIEW FORM -->
         <div class="quick-view js-quick-view-content">
             <div class="quick-view-content">
-                <ul class="quick-view__img-list">
+                <span class="loader quick-view-loader js-quick-view-loader"></span>
+                <!-- <ul class="quick-view__img-list">
                     <li class="quick-view__img-item quick-view__img-item--active">
                         <img src="./assets/img/product-info/fuji1.jpeg" alt="" class="quick-view__img">
                     </li>
@@ -625,7 +630,7 @@
                         <button class="quick-view__add-btn">THÊM VÀO GIỎ HÀNG</button>
                     </div>
                     
-                </div> 
+                </div>  -->
             </div>
         </div>
         

@@ -173,6 +173,14 @@
     margin: 0 4px;
 }
 
+.fa-square-facebook {
+    color: #1673eb;
+}
+
+.fa-square-instagram {
+    color: #f514ad;
+}
+
 /* 'Kết nối' không select được */
 .header__navbar-title--no-pointer {
     cursor: text;
@@ -555,6 +563,7 @@
     width: 80px;
     height: 60px;
     margin-left: 30px;
+    margin-bottom: 16px;
 }
 
 /* HEADER SEACH */
@@ -817,12 +826,12 @@
 .header__cart-img-nocart {
     width: 60%;
     padding-top: 30px;
-    display: none;
+    margin: auto;
 }
 
 .header__cart-label-nocart {
     color: #666;
-    display: none;
+    display: block;
     font-size: 1.4rem;
     padding: 30px 0;
 }
@@ -891,8 +900,14 @@
 }
 
 .header__cart-price-wrap {
+    /* flex-direction: column; */
+    text-align: end;
+}
+
+.header__cart-price-container {
     display: flex;
     flex-wrap: nowrap;
+    margin-bottom: 6px;
 }
 
 .header__cart-price {
@@ -916,6 +931,8 @@
 
 .header__cart-tail {
     display: flex;
+    flex-direction: column;
+    align-items: end;
     justify-content: space-between;
     padding-top: 4px;
 }
@@ -1260,12 +1277,12 @@
     text-align: center;
     /* nếu tên dài quá 2 dòng thì xuất hiện dấu 3 chấm */
     /* set height gấp đôi line-height ( với case 2 dòng ) */
-    height: 3.6rem; 
+    height: 1.8rem; 
     overflow: hidden;
     display: block;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
 }
 
 .home-product-item__price {
@@ -1306,13 +1323,14 @@
 .home-product-item__action {
     display: flex;
     justify-content: space-between;
-    margin: 12px 10px 12px;
+    margin: 12px 20px 12px;
     align-items: center;
 }
 
 .home-product-item__like {
     font-size: 1.4rem;
     margin-top: 5px;
+    cursor: pointer;
 }
 
 i.home-product-item__like-icon-fill {
@@ -1451,9 +1469,18 @@ i.home-product-item__like-icon-fill {
     animation: fadeIn linear 0.2s;
 }
 
+.none-products {
+    font-size: 2.4rem;
+    color: #777;
+    margin: 20px auto;
+    
+
+}
+
 /* PAGINATION */
 .home-product__pagination {
     margin: 48px 0 32px 0;
+    margin-left: -12vh;
 }
 
 /* FOOTER */
@@ -1732,6 +1759,16 @@ i.home-product-item__like-icon-fill {
     left: 46%;
 }
 
+.product-loader {
+    margin: 40px auto;
+}
+
+.quick-view-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
 
 /* MANAGE PRODUCT */
 .manage-product {
@@ -1815,6 +1852,12 @@ i.home-product-item__like-icon-fill {
 @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
+}
+
+
+
+.js-add-products {
+    display: none;
 }
   
 
